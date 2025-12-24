@@ -71,6 +71,15 @@ adk deploy cloud_run \
   --service-account="agent-service-account@mahen-projects.iam.gserviceaccount.com"
 ```
 
+### Cleanup
+
+```bash
+gcloud run services delete zoo-tour-guide --region=europe-west1 --quiet
+gcloud artifacts repositories delete cloud-run-source-deploy --location=europe-west1 --quiet
+
+gcloud projects delete $PROJECT_ID
+```
+
 ## Troubleshooting
 
 - **gcloud not found**: Ensure `gcloud` is in your PATH. If installed via Homebrew, you might need to source the path files or restart your terminal.
