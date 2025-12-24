@@ -56,6 +56,21 @@ To explicitly specify the project and region, pass them as `gcloud` arguments af
 adk deploy cloud_run . -- --project=YOUR_PROJECT_ID --region=us-central1
 ```
 
+### Deployment with Explicit Arguments
+To explicitly specify the project and region, pass them as `gcloud` arguments after `--`:
+```bash
+uvx --from google-adk \
+adk deploy cloud_run \
+  --project=$PROJECT_ID \
+  --region=europe-west1 \
+  --service_name=zoo-tour-guide \
+  --with_ui \
+  . \
+  -- \
+  --labels=dev-tutorial=codelab-adk \
+  --service-account="agent-service-account@mahen-projects.iam.gserviceaccount.com"
+```
+
 ## Troubleshooting
 
 - **gcloud not found**: Ensure `gcloud` is in your PATH. If installed via Homebrew, you might need to source the path files or restart your terminal.
