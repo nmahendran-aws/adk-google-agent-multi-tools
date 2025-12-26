@@ -31,12 +31,15 @@ This guide outlines the steps to set up the environment and deploy the Zoo Agent
 4.  **Configure Project**
     Set your active project (replace `YOUR_PROJECT_ID` with your actual Project ID, e.g., `mahen-projects`):
     ```bash
+    gcloud projects list
+    PROJECT_ID=$(gcloud config get-value project)
+PROJECT_NUMBER=$(gcloud projects describe $PROJECT_ID --format="value(projectNumber)")
     gcloud config set project YOUR_PROJECT_ID
     ```
 
     *Optional: Set a default region*
     ```bash
-    gcloud config set run/region us-central1
+    gcloud config set run/region us-east4
     ```
 
 ## Deployment
@@ -53,7 +56,7 @@ adk deploy cloud_run .
 To explicitly specify the project and region, pass them as `gcloud` arguments after `--`:
 
 ```bash
-adk deploy cloud_run . -- --project=YOUR_PROJECT_ID --region=us-central1
+adk deploy cloud_run . --project=YOUR_PROJECT_ID --region=us-east4
 ```
 
 ### Deployment with Explicit Arguments
@@ -62,7 +65,7 @@ To explicitly specify the project and region, pass them as `gcloud` arguments af
 uvx --from google-adk \
 adk deploy cloud_run \
   --project=$PROJECT_ID \
-  --region=europe-west1 \
+  --region=us-east4 \
   --service_name=zoo-tour-guide \
   --with_ui \
   . \

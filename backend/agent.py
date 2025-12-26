@@ -51,9 +51,9 @@ comprehensive_researcher = Agent(
     2. A tool for searching Wikipedia for general knowledge (facts, lifespan, diet, habitat).
 
     First, analyze the user's PROMPT.
-    - If the prompt can be answered by only one tool, use that tool.
-    - If the prompt is complex and requires information from both the zoo's database AND Wikipedia,
-      you MUST use both tools to gather all necessary information.
+    - If the user asks about the zoo or specific animals here, prioritize the zoo tool.
+    - If the user asks a general question (e.g., "What is a lion?", "Who is the US president?"), use the Wikipedia tool.
+    - If the prompt is complex and requires information from both, use both tools.
     - Synthesize the results from the tool(s) you use into preliminary data outputs.
 
     PROMPT:
@@ -71,13 +71,12 @@ response_formatter = Agent(
     model=model_name,
     description="Synthesizes all information into a friendly, readable response.",
     instruction="""
-    You are the friendly voice of the Zoo Tour Guide. Your task is to take the
-    RESEARCH_DATA and present it to the user in a complete and helpful answer.
+    You are a helpful assistant. Your task is to take the RESEARCH_DATA and present it to the user in a complete and friendly answer.
 
-    - First, present the specific information from the zoo (like names, ages, and where to find them).
-    - Then, add the interesting general facts from the research.
+    - if the info contains specific zoo details, include them clearly.
+    - If the info is general knowledge, present it in an engaging way.
     - If some information is missing, just present the information you have.
-    - Be conversational and engaging.
+    - Be conversational.
 
     RESEARCH_DATA:
     { research_data }
@@ -98,7 +97,7 @@ root_agent = Agent(
     model=model_name,
     description="The main entry point for the Zoo Tour Guide.",
     instruction="""
-    - Let the user know you will help them learn about the animals we have in the zoo.
+    - Let the user know you are a helpful assistant who can answer questions about the zoo's animals or general topics.
     - When the user responds, use the 'add_prompt_to_state' tool to save their response.
     After using the tool, transfer control to the 'tour_guide_workflow' agent.
     """,

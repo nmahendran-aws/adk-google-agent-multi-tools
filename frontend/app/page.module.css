@@ -1,0 +1,274 @@
+.main {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  background: radial-gradient(circle at 50% 10%, #1a1a1a 0%, var(--background) 80%);
+}
+
+.header {
+  padding: 1.5rem;
+  border-bottom: 1px solid var(--border-subtle);
+  background: rgba(10, 10, 10, 0.8);
+  backdrop-filter: blur(10px);
+  z-index: 10;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: 700;
+  font-size: 1.25rem;
+}
+
+.icon {
+  color: var(--primary);
+}
+
+.highlight {
+  color: var(--primary);
+}
+
+/* Chat Container */
+.chatContainer {
+  flex: 1;
+  overflow-y: auto;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  max-width: 900px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.messageRow {
+  display: flex;
+  align-items: flex-end;
+  gap: 1rem;
+  opacity: 0;
+  animation: fadeIn 0.3s forwards;
+}
+
+.userRow {
+  justify-content: flex-end;
+}
+
+.modelRow {
+  justify-content: flex-start;
+}
+
+.avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: #333;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.bubble {
+  padding: 1rem 1.25rem;
+  border-radius: 1.25rem;
+  max-width: 70%;
+  line-height: 1.6;
+  font-size: 0.95rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  position: relative;
+}
+
+.userBubble {
+  background: var(--primary);
+  color: #000;
+  border-bottom-right-radius: 4px;
+}
+
+.modelBubble {
+  background: var(--bubble-ai);
+  border: 1px solid var(--border-subtle);
+  border-bottom-left-radius: 4px;
+}
+
+/* Markdown Styles within Model Bubble */
+.modelBubble p {
+  margin-bottom: 0.75rem;
+}
+
+.modelBubble p:last-child {
+  margin-bottom: 0;
+}
+
+.modelBubble ul,
+.modelBubble ol {
+  margin-left: 1.5rem;
+  margin-bottom: 0.75rem;
+}
+
+.modelBubble li {
+  margin-bottom: 0.25rem;
+}
+
+.modelBubble h1,
+.modelBubble h2,
+.modelBubble h3,
+.modelBubble h4 {
+  margin-top: 1rem;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+  color: #fff;
+}
+
+.modelBubble h1:first-child,
+.modelBubble h2:first-child,
+.modelBubble h3:first-child {
+  margin-top: 0;
+}
+
+.modelBubble strong {
+  color: var(--primary);
+  font-weight: 600;
+}
+
+.modelBubble pre {
+  background: rgba(0, 0, 0, 0.3);
+  padding: 0.75rem;
+  border-radius: 0.5rem;
+  overflow-x: auto;
+  margin: 0.75rem 0;
+  font-family: 'Courier New', Courier, monospace;
+}
+
+.modelBubble code {
+  background: rgba(255, 255, 255, 0.1);
+  padding: 0.125rem 0.25rem;
+  border-radius: 0.25rem;
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 0.9em;
+}
+
+.modelBubble pre code {
+  background: transparent;
+  padding: 0;
+}
+
+.modelBubble a {
+  color: var(--primary);
+  text-decoration: underline;
+}
+
+.modelBubble blockquote {
+  border-left: 3px solid var(--primary);
+  padding-left: 1rem;
+  margin-left: 0;
+  color: #aaa;
+  font-style: italic;
+}
+
+/* Loading Dots */
+.loading {
+  display: flex;
+  gap: 4px;
+  padding: 1.25rem;
+  min-width: 60px;
+  justify-content: center;
+}
+
+.dot {
+  width: 6px;
+  height: 6px;
+  background: #666;
+  border-radius: 50%;
+  animation: bounce 1.4s infinite ease-in-out;
+}
+
+.dot:nth-child(1) {
+  animation-delay: -0.32s;
+}
+
+.dot:nth-child(2) {
+  animation-delay: -0.16s;
+}
+
+@keyframes bounce {
+
+  0%,
+  80%,
+  100% {
+    transform: scale(0);
+  }
+
+  40% {
+    transform: scale(1);
+  }
+}
+
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+}
+
+/* Input Area */
+.inputArea {
+  padding: 2rem;
+  background: linear-gradient(to top, var(--background) 20%, transparent);
+}
+
+.inputForm {
+  max-width: 900px;
+  margin: 0 auto;
+  position: relative;
+  display: flex;
+  gap: 0.75rem;
+}
+
+.input {
+  flex: 1;
+  background: var(--glass-bg);
+  border: 1px solid var(--border-subtle);
+  border-radius: 9999px;
+  /* full rounded */
+  padding: 1rem 1.5rem;
+  color: white;
+  font-size: 1rem;
+  outline: none;
+  transition: all 0.2s;
+  backdrop-filter: blur(10px);
+}
+
+.input:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 2px var(--primary-glow);
+}
+
+.sendBtn {
+  background: var(--primary);
+  border: none;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: #000;
+  transition: transform 0.2s;
+}
+
+.sendBtn:hover:not(:disabled) {
+  transform: scale(1.05);
+}
+
+.sendBtn:disabled {
+  background: #333;
+  color: #666;
+  cursor: not-allowed;
+}
